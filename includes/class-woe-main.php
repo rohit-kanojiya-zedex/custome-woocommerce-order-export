@@ -4,14 +4,14 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
-if ( ! class_exists( 'Woe' ) ) {
-    class Woe {
-        protected static ?Woe $instance = null;
-        public Add_Exp_Btn $addExpBtn;
-        public Woe_Ajax $woeAjax;
+if ( ! class_exists( 'WoeMain' ) ) {
+    class WoeMain {
+        protected static ?WoeMain $instance = null;
+        public WoeAddExpBtn $woeAddExpBtn;
+        public WoeAjax $woeAjax;
 
 
-        public static function getInstance(): Woe {
+        public static function getInstance(): WoeMain {
             if ( is_null( self::$instance ) ) {
                 self::$instance = new self();
             }
@@ -28,13 +28,13 @@ if ( ! class_exists( 'Woe' ) ) {
         }
 
         public function includes() {
-            require_once WOOCOMMERCE_ORDER_EXPORT_CSV_INCLUDES . 'class-add-exp-btn.php';
-            require_once WOOCOMMERCE_ORDER_EXPORT_CSV_INCLUDES . 'class-woe-ajax.php';
+            require_once WOE_INCLUDES . 'class-woe-add-exp-btn.php';
+            require_once WOE_INCLUDES . 'class-woe-ajax.php';
         }
 
         public function init() {
-            $this->addExpBtn = Add_Exp_Btn::getInstance();
-            $this->woeAjax = Woe_Ajax::getInstance();
+            $this->woeAddExpBtn = WoeAddExpBtn::getInstance();
+            $this->woeAjax = WoeAjax::getInstance();
         }
     }
 }

@@ -3,8 +3,8 @@ jQuery(document).ready(function($) {
     $('#export-order-btn').click(function() {
         const orderId = addExpBtnObj.orderId;
         $.post(addExpBtnObj.ajaxurl, {
-            action: 'export_order_to_csv',
-            order_id: orderId
+            action: 'woeExpoOrderToCsv',
+            orderId: orderId
         }, function (response) {
             if (response) {
                 const now = new Date();
@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
                 const time = `${now.getHours().toString().padStart(2, '0')}-${now.getMinutes().toString().padStart(2, '0')}`;
                 const filename = `order_detail_${date}_${time}.csv`;
                 const downloadLink = $('<a/>', {
-                    href: response.data.csv_data_uri,
+                    href: response.data.csvDataUri,
                     download: filename
                 });
                 downloadLink.appendTo('body')[0].click();
